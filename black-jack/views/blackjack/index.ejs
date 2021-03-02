@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>BLACK JACK</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/javascripts/blackjack.js"></script>
+</head>
+
+<body class="container" onload="init()">
+
+    <header>
+        <h1 class="display-4 text-primary">
+            BLACK JACK
+        </h1>
+    </header>
+
+    <div role="main">
+        <p class="h5 my-4">Hi,
+            <span>
+                <%= login.name %>
+            </span>!<br>
+            Welcome to BLACK JACK
+        </p>
+        <p>〜ルール〜</p>
+        <p>配られたカードの合計点数を21点にする　または　21点を超えないよう21点により近づけた人の勝ち</p>
+        <p>絵札は全て10点と考える</p>
+
+        <table>
+            <tr>
+                <td width="150">BUST</td>
+                <td>21点を越えること</td>
+            </tr>
+
+            <tr>
+                <td>HIT</td>
+                <td>HANDにもう1枚カードを追加すること</td>
+            </tr>
+
+            <tr>
+                <td>STAND</td>
+                <td>これ以上HITせずに現在のHANDで勝負に出ること</td>
+            </tr>
+
+            <tr>
+                <td>DOUBLE</td>
+                <td>3枚目を引く前に宣言　掛け金を倍にして3枚のカードで勝負に出る</td>
+            </tr>
+
+            <tr>
+                <td>BLACK JACK</td>
+                <td>最初に配られるカードがAと10点のカードの時成立する プレイヤーがBLACK JACKで勝つと掛け金の3倍の配当を獲得できる</td>
+            </tr>
+        </table>
+
+        <hr>
+        <p id="coin">所持金 : <%= login.coin %>
+        </p>
+        <form>
+            <select id="kakekin">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </form>
+        <input id="bet" type="button" value="決定" onclick="bet_serect()">
+        <div id="stage">
+            <p id="bet_coin">賭け金 : </p>
+
+            <img id="com_card0" src="card/card_back.png" width="120" height="180">
+            <img id="com_card1" src="card/shiro.png" width="120" height="180">
+            <img id="com_card2" src="card/shiro.png" width="120" height="180">
+            <img id="com_card3" src="card/shiro.png" width="120" height="180">
+            <img id="com_card4" src="card/shiro.png" width="120" height="180">
+            <img id="com_card5" src="card/shiro.png" width="120" height="180">
+            <img id="com_card6" src="card/shiro.png" width="120" height="180">
+            <img id="com_card7" src="card/shiro.png" width="120" height="180">
+            <img id="com_card8" src="card/shiro.png" width="120" height="180">
+            <img id="com_card9" src="card/shiro.png" width="120" height="180">
+            <img id="com_card10" src="card/shiro.png" width="120" height="180">
+            <img id="com_card11" src="card/shiro.png" width="120" height="180">
+            <img id="com_card12" src="card/shiro.png" width="120" height="180">
+            <hr>
+            <img id="player_card0" src="card/shiro.png" width="120" height="180">
+            <img id="player_card1" src="card/shiro.png" width="120" height="180">
+            <img id="player_card2" src="card/shiro.png" width="120" height="180">
+            <img id="player_card3" src="card/shiro.png" width="120" height="180">
+            <img id="player_card4" src="card/shiro.png" width="120" height="180">
+            <img id="player_card5" src="card/shiro.png" width="120" height="180">
+            <img id="player_card6" src="card/shiro.png" width="120" height="180">
+            <img id="player_card7" src="card/shiro.png" width="120" height="180">
+            <img id="player_card8" src="card/shiro.png" width="120" height="180">
+            <img id="player_card9" src="card/shiro.png" width="120" height="180">
+            <img id="player_card10" src="card/shiro.png" width="120" height="180">
+            <img id="player_card11" src="card/shiro.png" width="120" height="180">
+            <img id="player_card12" src="card/shiro.png" width="120" height="180">
+
+
+            <input type="button" value="HIT" onclick="p_hit()">
+            <input type="button" value="STAND" onclick="stand()">
+            <input type="button" value="DOUBLE" onclick="double()">
+        </div>
+        <p id="judg">YOU </p>
+        <input id="next" type="button" value="next" onclick="init()">
+
+    </div>
+</body>
+
+<script>
+    coin = <%= login.coin %>;
+    userName = "<%= login.name %>";
+    console.log("<<<" + userName);
+
+
+</script>
+
+</html>
